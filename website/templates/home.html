@@ -1,0 +1,71 @@
+{% extends "base.html" %}{% block content%}
+<head>
+   <style>
+/* Custom default button */
+.btn-default,
+.btn-default:hover,
+.btn-default:focus {
+  color: rgb(36,35,36);
+  text-shadow: none; /* Prevent inheritence from `body` */
+  background-color: #fff;
+  border: 1px solid #fff;
+}
+/*
+ * Base structure
+ */
+html,
+body {
+  height: 100%;
+  background-color: rgb(36,35,36);
+}
+body {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+}
+/* Extra markup and styles for table-esque vertical and horizontal centering */
+.site-wrapper {
+  display: table;
+  width: 100%;
+  height: 600px;
+  background-color: rgb(36,35,36)
+  /*height: 100%; */
+  /*min-height: 100%;*/
+}
+.site-wrapper-inner {
+  display: table-cell;
+  vertical-align: top;
+}
+.cover-container {
+  margin-right: auto;
+  margin-left: auto;
+}
+/*
+ * Cover
+ */
+.cover .btn-lg {
+  padding: 10px 20px;
+  font-weight: bold;
+}
+  /* Start the vertical centering */
+  .site-wrapper-inner {
+    vertical-align: middle;
+  }
+
+</style>
+</head>
+<body>
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="container">
+          <div class="inner cover">
+            <h1 class="cover-heading">Stats for Schools</h1>
+            <p class="lead">The Home for School Stats</p>
+              <div><p class="lead"><a href="/statssheets" class="btn btn-lg btn-default">Create Stats Sheet</a></p></div>
+              <div><p class="lead"><a href="/leagues" class="btn btn-lg btn-default">View Stats</a></p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+{% endblock %}

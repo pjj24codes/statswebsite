@@ -1,0 +1,112 @@
+{% extends "base.html" %}{% block title %} {{ team }} {% endblock %}
+{% block content%}
+<head>
+    <style>
+/* Custom default button */
+.btn-default,
+.btn-default:hover,
+.btn-default:focus {
+  color: rgbrgb(36,35,36);
+  text-shadow: none; /* Prevent inheritence from `body` */
+  background-color: #fff;
+  border: 1px solid #fff;
+}
+    html,body {
+  height: 100%;
+  background-color: rgb(36,35,36);
+}
+ .site-wrapper {
+  display: table;
+  width: 100%;
+  height: 600px;
+  background-color: rgb(36,35,36)
+  /*height: 100%; */
+  /*min-height: 100%;*/
+  }
+  table, th, td {
+  color:white;
+  border: 3px solid white;
+  border-collapse: collapse;
+}
+
+  .firstTable tr:nth-child(odd) {
+background-color: rgb(61, 61, 61);
+}
+.firstTable tr:nth-child(even) {
+background-color: rgb(43, 43, 43);
+}
+    </style>
+</head>
+<body>
+<div class="site-wrapper" align="center" style="color:white">
+    <br />
+    <h2> {{ selected_game.your_team }} - {{ selected_game.opponent_team }} </h2>
+    <h4> {{ league }} {{ sport }} Division {{ division }}  </h4>
+    <h3> {{ selected_game.your_team_score }} - {{ selected_game.opponent_team_score }} </h3>
+    <h3> {{ date }} </h3>
+    <br />
+    <table class="firstTable" style="width:100%;">
+        <thead style="text-align:center">
+          <tr>
+              <th colspan="100%"> {{ date }}: {{ selected_game.your_team }} - {{ selected_game.opponent_team }} </th>
+          </tr>
+          <tr>
+            {% if sport=="Boys Basketball" or sport=="Girls Basketball" %}
+          <th> # </th>
+          <th> Player </th>
+          <th> FG </th>
+          <th> FGA </th>
+          <th> FG% </th>
+          <th> 3P </th>
+          <th> 3PA </th>
+          <th> 3P% </th>
+          <th> FT </th>
+          <th> FTA </th>
+          <th> FT% </th>
+          <th> TRB </th>
+          <th> AST </th>
+          <th> PTS </th>
+          {% elif sport=="Boys Soccer" or sport=="Girls Soccer" %}
+        <th> # </th>
+        <th> Player </th>
+        <th> AST </th>
+        <th> Goals </th>
+        <th> Yellow Cards </th>
+        <th> Red Cards </th>
+          {% endif %}
+          </tr>
+        </thead>
+           <tbody>
+            {%  for player in recorded_players %}
+            <tr>
+              {% if sport=="Boys Basketball" or sport=="Girls Basketball" %}
+              <td style="text-align: center"> {{ player.num }} </td>
+              <td style="text-align: center"> {{ player.name }} </td>
+              <td style="text-align: center"> {{ player.field_goals }} </td>
+              <td style="text-align: center"> {{ player.field_goals_attempted }} </td>
+              <td style="text-align: center"> {{ player.field_goal_percent}} </td>
+              <td style="text-align: center"> {{ player.three_pointers }} </td>
+              <td style="text-align: center"> {{ player.three_pointers_attempted }} </td>
+              <td style="text-align: center"> {{ player.three_pointer_percent }} </td>
+              <td style="text-align: center"> {{ player.free_throws }} </td>
+              <td style="text-align: center"> {{ player.free_throws_attempted }} </td>
+              <td style="text-align: center"> {{ player.free_throw_percent }} </td>
+              <td style="text-align: center"> {{ player.rebounds }} </td>
+              <td style="text-align: center"> {{ player.assists }} </td>
+              <td style="text-align: center"> {{ player.points }} </td>
+              {% elif sport=="Boys Soccer" or sport=="Girls Soccer" %}
+              <td style="text-align: center"> {{ player.num }} </td>
+              <td style="text-align: center"> {{ player.name }} </td>
+              <td style="text-align: center"> {{ player.assists }} </td>
+              <td style="text-align: center"> {{ player.goals }} </td>
+              <td style="text-align: center"> {{ player.yellow_cards }} </td>
+              <td style="text-align: center"> {{ player.red_cards }} </td>
+              {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br/>
+    <div><form method="POST"><button class="btn btn-lg btn-default" type="submit" id="back" name="back" value="back">Back to Team Stats</button></form></div>
+</body>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}{% block title %} {{ team }} {% endblock %}
+{% block content%}
+<head>
+    <style>
+    html,body {
+  height: 100%;
+  background-color: rgb(36,35,36);
+}
+ .site-wrapper {
+  display: table;
+  width: 100%;
+  height: 600px;
+  background-color: rgb(36,35,36)
+  /*height: 100%; */
+  /*min-height: 100%;*/
+}
+    </style>
+</head>
+<body>
+<div class="site-wrapper" align="center" style="color:white">
+    <br />
+    <h2> {{ team }} </h2>
+    <h4> {{ league }} {{ sport }} Division {{ division }}  </h4>
+    <br />
+    <h3><u>Team Record</u></h3> 
+    {% if existing_team.draws > 0 %}
+    <h1>{{ existing_team.wins }} - {{ existing_team.losses }} - {{ existing_team.draws }}</h1>
+    {% else %}
+    <h1>{{ existing_team.wins }} - {{ existing_team.losses }}</h1>
+    {% endif %}
+    <br />
+    <h3><u>View Past Games</u></h3>
+    {% if recorded_games %}
+    {% for game in recorded_games %}
+    <div><form method="POST"><button class="btn" type="submit" id="selected_game" name="selected_game" value="{{ game[3] }}" style="color:white;font-size: 20px;">{{ game[0] }}: {{ game[1] }} vs {{ game[2] }}</button></form></div>
+    {% endfor %}
+    {% else %}
+    <h4> N/A </h4>
+    {% endif %}
+    </div>
+</body>
+{% endblock %}

@@ -1,0 +1,191 @@
+{% extends "base.html" %}{% block title %} Basketball Stats Sheets {% endblock %}{% block content%}
+<head>
+    <style>
+    .btn-default,
+.btn-default:hover,
+.btn-default:focus {
+  color: rgb(36,35,36);
+  text-shadow: none; /* Prevent inheritence from `body` */
+  background-color: #fff;
+  border: 1px solid #fff;
+}
+
+
+    html,body {
+  height: 100%;
+  background-color: rgb(36,35,36);
+}
+ .site-wrapper {
+  display: table;
+  width: 100%;
+  height: 600px;
+  background-color: rgb(36,35,36)
+  /*height: 100%; */
+  /*min-height: 100%;*/
+}
+
+table, th, td {
+  color:white;
+  border: 3px solid white;
+  border-collapse: collapse;
+}
+
+.firstTable tr:nth-child(odd) {
+background-color: rgb(61, 61, 61);
+}
+.firstTable tr:nth-child(even) {
+background-color: rgb(43, 43, 43);
+}
+    </style>
+</head>
+<body>
+<div class="site-wrapper">
+    <br />
+<h3 align="center" style="color:white">Create Basketball Stats Sheet</h3>
+    <table class="firstTable" style="width:100%;">
+  <thead style="text-align:center">
+    <tr>
+        <th colspan="100%"> Basketball Stats Sheet </th>
+    </tr>
+    <tr>
+        <th> # </th>
+        <th> Player </th>
+        <th> FG </th>
+        <th> FGA </th>
+        <th> FG% </th>
+        <th> 3P </th>
+        <th> 3PA </th>
+        <th> 3P% </th>
+        <th> FT </th>
+        <th> FTA </th>
+        <th> FT% </th>
+        <th> TRB </th>
+        <th> AST </th>
+        <th> PTS </th>
+        <th> Remove Player </th>
+    </tr>
+  </thead>
+     <tbody>
+     {% for index in range(0, len) %}
+     <tr>
+         {% for k in players[index].keys() %}
+         {% if k == "FG" or k == "FGA" or k == "3P" or k == "3PA" or k == "FT" or k == "FTA" or k == "TRB" or k == "AST" or k == "PTS" %}
+         <td style="text-align: center">  &nbsp; {{ players[index][k] }} &nbsp; <form method="POST"style="display:inline;"><button class="btn btn-sm btn-default" type="submit" id="add1" name="add1" value="{{ index }}, {{ k }}">+</button></form></td>
+         {% else %}
+         <td style="text-align: center"> {{ players[index][k] }} </td>
+         {% endif %}
+         {% endfor %}
+         <td style="text-align: center"><form method="POST"><button class="btn btn-sm btn-default" type="submit" id="remove_player" name="remove_player" value="{{ index }}">
+          <span aria-hidden="true">&times;</span>
+      </button></form></td>
+     </tr>
+     {% endfor %}
+     <tr>
+         <th colspan="100%" style="height: 225px;text-align: center;"><form method="POST">
+             <div class="form-group" align="center">
+        <label for="playername">Player Name:</label>
+        <input type="text" class="form-control" style="width: 200px;" id="playername" name="playername" placeholder="Enter name"/>
+    </div>
+             <div class="form-group" align="center">
+        <label for="playernumber">Player Number:</label>
+        <input type="number" class="form-control" style="width: 200px;" id="playernumber" name="playernumber" placeholder="Enter number"/>
+    </div>
+             <button class="btn btn-default" type="submit" id="add_player" name="add_player" >Add Player</button>
+         </form></th>
+            </tr>
+    {% if len > 0 %}
+    <tr>
+      <th colspan="100%" style="height: 60px; text-align: center;">
+        <form method="POST"><button class="btn btn-default" type="submit" id="delete_table" name="delete_table" >Delete Entire Stats Sheet</button>
+      </form></th>
+    </tr>
+      <tr>  
+        {% if not continue_data %}
+      <th colspan="100%" style="height: 130px; text-align: center;"><form method="POST">
+        <h3>Save Stats</h3>
+          <div class="form-group">
+      <p >League: </p>
+      {% for league in leagues %}
+      <input type="radio" id="{{ league.acronym }}" name="league" value="{{ league.acronym }}">
+      <label for="{{ league.acronym }}">{{ league.acronym }}</label>
+      {% endfor %}
+  </div>
+      <div class="form-group" >
+      <label for="division">Division:</label>
+      <select id="division" name="division">
+        {% for num in range(1, 6) %}
+        <option value="{{ num }}"> {{ num }} </option>
+        {% endfor %}
+      </select>
+  </div>
+        <div class="form-group">
+          <p > Gender: </p>
+          <div><input type="radio" id="Boys" name="gender" value="Boys">
+          <label for="boys">Boys</label></div>
+          <div><input type="radio" id="Girls" name="gender" value="Girls">
+          <label for="girls">Girls</label></div>
+      </div><button class="btn btn-default" type="submit" id="continue" name="continue" >Continue</button>
+    </form>
+    {% else %}
+    <th colspan="100%" style="height: 225px; text-align: center;"><form method="POST">
+  <div class="form-group" >
+    <h3>Save Stats</h3>
+    <p> League: {{ continue_data[0] }} </p>
+    <p> Sport: {{ continue_data[1] }} </p>
+    <p> Division: {{ continue_data[2] }} </p>
+        <label for="your_team">Your Team:</label>
+        <select style="width: 350px;" id="your_team" name="your_team">
+          {% for league in leagues %}
+          {% if league.acronym == continue_data[0] %}
+          {% for sport in league.sports %}
+          {% if sport[0] == continue_data[1] %}
+          {% for team in sport[2][continue_data[2]-1] %}
+          <option value="{{ team }}"> {{ team }} </option>
+          {% endfor %}
+          {% endif %}
+          {% endfor %}
+          {% endif %}
+          {% endfor %}
+        </select>
+</div>
+<div class="form-group" align="center">
+  <label for="opponent_team">Opponent Team:</label>
+  <select style="width: 350px;" id="opponent_team" name="opponent_team">
+    {% for league in leagues %}
+    {% if league.acronym == continue_data[0] %}
+    {% for sport in league.sports %}
+    {% if sport[0] == continue_data[1] %}
+    {% for team in sport[2][continue_data[2]-1] %}
+    <option value="{{ team }}"> {{ team }} </option>
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
+  </select>
+</div>
+<div class="form-group" align="center">
+  <label for="your_team_score">Your Team Final Score:</label>
+  <input type="number" class="form-control" style="width: 300px;" id="your_team_score" name="your_team_score" placeholder="Enter Final Score of Your Team"/>
+</div>
+<div class="form-group" align="center">
+  <label for="opponent_team_score"> Opponent Team Final Score:</label>
+  <input type="number" class="form-control" style="width: 300px;" id="opponent_team_score" name="opponent_team_score" placeholder="Enter Final Score of Opponent Team"/>
+</div>
+<div class="form-group" align="center">
+  <label for="date">Date</label>
+  <input type="date" class="form-control" style="width: 200px;" id="date" name="date" placeholder="Enter Date of Game"/>
+</div>
+ <button class="btn btn-default" type="submit" id="save" name="save" >Save</button>
+  </form>
+      {% endif %}
+    </th>
+          </tr>
+    {% endif %}
+    </tbody>
+</table>
+<br />
+<br />
+</div>
+</body>
+{% endblock%}
