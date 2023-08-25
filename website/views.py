@@ -240,7 +240,7 @@ def soccerstatssheets():
                 db.session.add(add_game)
                 db.session.commit()
                 for p in players:
-                    add_player = SoccerPlayerStats(num=p["Number"], name=p["Name"], assists = p["AST"], goals = p["Goals"], yellow_cards = p["Yellow Cards"], red_cards = p["Red Cards"], game_id = add_game.id)
+                    add_player = SoccerPlayerStats(num=p["Number"], name=p["Name"], assists = p["AST"], goals = p["Goals"], shots_taken = p["Shots Taken"], yellow_cards = p["Yellow Cards"], red_cards = p["Red Cards"], game_id = add_game.id)
                     db.session.add(add_player)
                 db.session.commit()
                 players = []
