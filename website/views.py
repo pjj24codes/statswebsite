@@ -55,18 +55,18 @@ views = Blueprint("views", __name__)
 @views.route("/", methods=["GET", "POST"])
 def home():
     # Adds teams to database
-    add_teams = []
-    for league in leagues:
-        for sport in league.sports:
-            for div in range(0, sport[1]):
-                for team in sport[2][div]:
-                    league_sport_division_team = league.acronym + " " + sport[0] + " " + str(div+1) + " " + team
-                    existing_team = Team.query.filter_by(league_sport_division_team=league_sport_division_team).first()
-                    if not existing_team:
-                        add_team = Team(league_sport_division_team=league_sport_division_team, league=league.acronym, sport=sport[0], division=(div+1), team=team, wins=0, losses=0, draws=0)
-                        add_teams.append(add_team)
-    db.session.add_all(add_teams)
-    db.session.commit()
+    # add_teams = []
+    # for league in leagues:
+    #     for sport in league.sports:
+    #         for div in range(0, sport[1]):
+    #             for team in sport[2][div]:
+    #                 league_sport_division_team = league.acronym + " " + sport[0] + " " + str(div+1) + " " + team
+    #                 existing_team = Team.query.filter_by(league_sport_division_team=league_sport_division_team).first()
+    #                 if not existing_team:
+    #                     add_team = Team(league_sport_division_team=league_sport_division_team, league=league.acronym, sport=sport[0], division=(div+1), team=team, wins=0, losses=0, draws=0)
+    #                     add_teams.append(add_team)
+    # db.session.add_all(add_teams)
+    # db.session.commit()
     return render_template("home.html")
 
 
