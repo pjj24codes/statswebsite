@@ -55,18 +55,18 @@ views = Blueprint("views", __name__)
 @views.route("/", methods=["GET", "POST"])
 def home():
     # Adds teams to database
-    # add_teams = []
-    # for league in leagues:
-    #     for sport in league.sports:
-    #         for div in range(0, sport[1]):
-    #             for team in sport[2][div]:
-    #                 league_sport_division_team = league.acronym + " " + sport[0] + " " + str(div+1) + " " + team
-    #                 existing_team = Team.query.filter_by(league_sport_division_team=league_sport_division_team).first()
-    #                 if not existing_team:
-    #                     add_team = Team(league_sport_division_team=league_sport_division_team, league=league.acronym, sport=sport[0], division=(div+1), team=team, wins=0, losses=0, draws=0)
-    #                     add_teams.append(add_team)
-    # db.session.add_all(add_teams)
-    # db.session.commit()
+    add_teams = []
+    for league in leagues:
+        for sport in league.sports:
+            for div in range(0, sport[1]):
+                for team in sport[2][div]:
+                    league_sport_division_team = league.acronym + " " + sport[0] + " " + str(div+1) + " " + team
+                    existing_team = Team.query.filter_by(league_sport_division_team=league_sport_division_team).first()
+                    if not existing_team:
+                        add_team = Team(league_sport_division_team=league_sport_division_team, league=league.acronym, sport=sport[0], division=(div+1), team=team, wins=0, losses=0, draws=0)
+                        add_teams.append(add_team)
+    db.session.add_all(add_teams)
+    db.session.commit()
     return render_template("home.html")
 
 
@@ -185,7 +185,7 @@ def soccerstatssheets():
             elif not new_player_number:
                 flash("Please add a number to the player", category="error")
             else:
-                players.append({"Number": new_player_number, "Name": new_player_name, "AST": 0, "Goals": 0, "Yellow Cards": 0, "Red Cards": 0})
+                players.append({"Number": new_player_number, "Name": new_player_name, "AST": 0, "Saves":0, "Shots Taken":0, "Goals": 0, "Yellow Cards": 0, "Red Cards": 0})
         elif "add1" in request.form:
             add_one_placement = request.form.get('add1').split(", ")
             players[int(add_one_placement[0])][add_one_placement[1]] += 1
@@ -240,7 +240,7 @@ def soccerstatssheets():
                 db.session.add(add_game)
                 db.session.commit()
                 for p in players:
-                    add_player = SoccerPlayerStats(num=p["Number"], name=p["Name"], assists = p["AST"], goals = p["Goals"], yellow_cards = p["Yellow Cards"], red_cards = p["Red Cards"], game_id = add_game.id)
+                    add_player = SoccerPlayerStats(num=p["Number"], name=p["Name"], assists = p["AST"], saves=p["Saves"], shots_taken=p["Shots Taken"], goals = p["Goals"], yellow_cards = p["Yellow Cards"], red_cards = p["Red Cards"], game_id = add_game.id)
                     db.session.add(add_player)
                 db.session.commit()
                 players = []

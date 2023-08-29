@@ -48,6 +48,8 @@ class SoccerPlayerStats(db.Model):
     num = db.Column(db.Integer)
     name = db.Column(db.String(100))
     assists = db.Column(db.Integer)
+    saves = db.Column(db.Integer)
+    shots_taken = db.Column(db.Integer)
     goals = db.Column(db.Integer)
     yellow_cards = db.Column(db.Integer)
     red_cards = db.Column(db.Integer)

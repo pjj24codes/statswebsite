@@ -53,6 +53,8 @@ background-color: rgb(43, 43, 43);
         <th> Player </th>
         <th> AST </th>
         <th> Goals </th>
+        <th> Saves </th>
+        <th> Shots Taken </th>
         <th> Yellow Cards </th>
         <th> Red Cards </th>
         <th> Remove Player </th>
@@ -62,7 +64,7 @@ background-color: rgb(43, 43, 43);
      {% for index in range(0, len) %}
      <tr>
          {% for k in players[index].keys() %}
-         {% if k == "AST" or k == "Goals" or k == "Yellow Cards" or k == "Red Cards" %}
+         {% if k == "AST" or k=="Saves" or k=="Shots Taken" or k == "Goals" or k == "Yellow Cards" or k == "Red Cards" %}
          <td style="text-align: center">  &nbsp; {{ players[index][k] }} &nbsp; <form method="POST"style="display:inline;"><button class="btn btn-sm btn-default" type="submit" id="add1" name="add1" value="{{ index }}, {{ k }}">+</button></form></td>
          {% else %}
          <td style="text-align: center"> {{ players[index][k] }} </td>
