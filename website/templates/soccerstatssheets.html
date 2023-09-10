@@ -102,6 +102,7 @@ background-color: rgb(43, 43, 43);
         {% for league in leagues %}
         <input type="radio" id="{{ league.acronym }}" name="league" value="{{ league.acronym }}">
         <label for="{{ league.acronym }}">{{ league.acronym }}</label>
+        <br />
         {% endfor %}
     </div>
         <div class="form-group" >
@@ -110,6 +111,10 @@ background-color: rgb(43, 43, 43);
           {% for num in range(1, 6) %}
           <option value="{{ num }}"> {{ num }} </option>
           {% endfor %}
+          <option value="North">North</option>
+        <option value="Central">Central</option>
+        <option value="South">South</option>
+        <option value="Independent">Independent</option>
         </select>
     </div>
           <div class="form-group">
@@ -145,17 +150,9 @@ background-color: rgb(43, 43, 43);
   <div class="form-group" align="center">
     <label for="opponent_team">Opponent Team:</label>
     <select style="width: 350px;" id="opponent_team" name="opponent_team">
-      {% for league in leagues %}
-      {% if league.acronym == continue_data[0] %}
-      {% for sport in league.sports %}
-      {% if sport[0] == continue_data[1] %}
-      {% for team in sport[2][continue_data[2]-1] %}
-      <option value="{{ team }}"> {{ team }} </option>
-      {% endfor %}
-      {% endif %}
-      {% endfor %}
-      {% endif %}
-      {% endfor %}
+      {% for team in teams %}
+    <option value="{{ team }}"> {{ team }} </option>
+    {% endfor %}
     </select>
   </div>
   <div class="form-group" align="center">

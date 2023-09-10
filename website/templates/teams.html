@@ -20,7 +20,19 @@
 <div class="site-wrapper" align="center" style="color:white">
     <br />
     <h2> {{ team }} </h2>
-    <h4> {{ league }} {{ sport }} Division {{ division }}  </h4>
+    {% if league == "MCSAO" %}
+            {% if division==1 %}
+            <h4> {{ league }} {{ sport }}: North Division </h4>
+            {% elif division==2 %}
+            <h4> {{ league }} {{ sport }}: Central Division </h4>
+            {% elif division==3 %}
+            <h4> {{ league }} {{ sport }}: South Division </h4>
+             {% elif division==4 %}
+            <h4> {{ league }} {{ sport }}: Independent Division </h4>
+            {% endif %}
+            {% else %}
+            <h4> {{ league }} {{ sport }}: Division {{ division }}  </h4>
+                {% endif %}
     <br />
     <h3><u>Team Record</u></h3> 
     {% if existing_team.draws > 0 %}

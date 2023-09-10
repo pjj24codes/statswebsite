@@ -19,7 +19,19 @@
 <body>
 <div class="site-wrapper">
     <br />
-    <h2 align="center" style="color:white"> {{ league }} {{ sport }} Division {{ division }} </h2>
+    {% if league == "MCSAO" %}
+            {% if division==1 %}
+            <h2 align="center" style="color:white"> {{ league }} {{ sport }}: North Division </h2>
+            {% elif division==2 %}
+            <h2 align="center" style="color:white"> {{ league }} {{ sport }}: Central Division </h2>
+            {% elif division==3 %}
+            <h2 align="center" style="color:white"> {{ league }} {{ sport }}: South Division </h2>
+             {% elif division==4  %}
+            <h2 align="center" style="color:white"> {{ league }} {{ sport }}: Independent Division </h2>
+            {% endif %}
+            {% else %}
+            <h2 align="center" style="color:white"> {{ league }} {{ sport }}: Division {{ division }} </h2>
+                {% endif %}
     <h3 style="color:white">  Teams: </h3>
     {%for lg in leagues %}
     {% if lg.acronym == league %}

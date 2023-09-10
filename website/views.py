@@ -7,6 +7,7 @@ leagues = []
 statsheetsports = ["basketball", "soccer"]
 locate_stats = ["MIAA", "Boys Basketball", 1, "Brockton High School", 1]
 continue_data = None
+teams = []
 players = []
 
 
@@ -42,11 +43,32 @@ leagues[0].addsport("Girls Soccer", 5, [['Brockton High School', 'Framingham Hig
                                         ['Greater New Bedford RVTHS', 'Greater Lowell Tech HS', 'Essex North Shore Agric & Tech School', 'Revere High School', 'Montachusett RVT High School', 'Shawsheen Valley Tech School', 'Whittier RVT High School', 'Worcester Technical High School', 'Blackstone Valley Reg Voc/Tech HS', 'Tantasqua Regional Senior High School', 'Boston Latin Academy', 'Assabet Valley Reg Tech HS', 'Holyoke High School', 'Nauset Reg. High School', 'Tewksbury Memorial High School', 'Danvers High School', 'Pembroke High School', 'Newburyport High School', 'Falmouth High School', 'North Middlesex Regional HS', 'Foxborough High School', 'Medfield High School', 'Gloucester High School', 'Chicopee High School', 'Hanover High School', 'Groton-Dunstable Reg. High School', 'Auburn High School', 'Apponequet Regional H.S.', 'Saugus Middle/High School', 'Watertown High School', 'Wilmington High School', 'Dighton-Rehoboth Regional HS', 'Dedham High School', 'Old Rochester Reg. High School', 'Norton High School', "Martha's Vineyard Reg. High Sch.", 'Dover-Sherborn High School', 'Taconic High School', 'Medway High School', 'Belchertown High School', 'Weston High School', 'North Reading High School', 'Swampscott High School', 'Triton Regional High School', 'Norwell High School', 'Pentucket Reg. High School', 'Nipmuc Regional High School', 'Oakmont Regional High School', 'Hudson High School', 'Fairhaven High School', 'Sandwich High School', 'Norfolk County Agricultural', 'Seekonk High School', 'Dennis-Yarmouth Regional HS', 'Salem High School', 'East Bridgewater Jr/Sr High School', 'Quabbin Regional High School', 'Stoneham High School', 'Ursuline Academy', 'Archbishop Williams High School', 'Cardinal Spellman High School', 'Bishop Fenwick High School', "Saint Mary's High School", 'Fontbonne Academy', 'Pope Francis Preparatory School', 'Arlington Catholic High School', 'Notre Dame Academy (W)'],
                                         ['Greater Lawrence Tech HS', 'Bay Path RVT High School', 'Northeast Metro. Reg. Voc. School', 'O\'Bryant High School', 'South High Community School', 'Tri-County RVT High School', 'Blue Hills Regional Tech Sch.', 'Lynn Vocational Technical Inst', 'South Shore Voc/Tech. HS', 'Minuteman Regional High School', 'Madison Park Tech/Voc H.S.', 'Abington High School', 'Bellingham High School', 'Lynnfield High School', 'Pittsfield High School', 'Advanced Math & Science Acad. Charter', 'Winthrop High School', 'East Boston High School', 'Joseph Case High School', 'South Hadley High School', 'Nantucket High School', 'Ipswich High School', 'Rockland High School', 'Northbridge High School', 'Excel Academy Charter High School', 'Monomoy Regional High School', 'Wahconah Regional High School', 'Monument Mountain Reg HS', 'Hamilton-Wenham Reg HS', 'Millbury Mem.Jr./Sr.H.S.', 'Westfield Technical Academy', 'High School of Commerce', 'Manchester Essex Reg. High School', 'Randolph High School', 'Amesbury High School', 'Littleton High School', 'Lunenburg High School', 'Mashpee Middle/High School', 'Hampshire Regional Middle/High School', 'Gardner High School', 'Cohasset High School', 'Clinton High School', 'Saint Paul Diocesan Jr/Sr HS', 'Leicester High School', 'Tyngsborough High School', 'Uxbridge High School', 'Sturgis Charter School West', 'Sturgis Charter School East', 'Southwick Regional School', 'West Bridgewater Mid/Sr. HS', 'Frontier Regional School', 'Lowell Catholic High School', 'Oxford High School', 'Blackstone-Millville Reg HS', 'Carver Middle/High School', 'Easthampton High School', 'Bourne High School', 'Sutton High School', 'Cathedral High School', 'Mount Alvernia High School', 'Bishop Connolly High School', 'Saint Bernard\'s High School', 'Falmouth Academy', 'Maimonides School', 'Cape Cod Academy', 'South Shore Christian Academy', 'Trivium School'],
                                         ['Nashoba Valley Technical High School', 'Upper Cape Cod RVT School', 'Pathfinder RVT High School', 'Old Colony Reg Voc/Tech HS', 'Cape Cod Regional Tech HS', 'Franklin County Tech. School', 'McCann Technical High School', 'Bristol County Agricultural HS', 'Smith Vocational and Agricultural HS', 'Roxbury Prep High School', 'Snowden Int\'l School @ Copley', 'Innovation Academy Charter School', 'KIPP Academy Lynn Collegiate', 'Ayer Shirley Regional High School', 'Matignon High School', 'Douglas High School', 'Greenfield High School', 'Georgetown Middle/High School', 'Millis High School', 'Mount Greylock Regional School', 'Quaboag Regional Middle/High School', 'Bromfield School', 'Wareham High School', 'David Prouty High School', 'Mystic Valley Regional Charter School', 'Springfield Int\'l Charter School', 'Tech Boston Academy', 'Boston Collegiate Charter School', 'Westport High School', 'Athol High School', 'Maynard High School', 'Hopedale Jr./Sr. High School', 'Mahar Regional School', 'Charlestown High School', 'New Mission High School', 'Narragansett Reg. High School', 'Tahanto Regional Middle/High School', 'Bartlett High School', 'Holbrook Middle-High School', 'Rising Tide Charter Public School', 'Abby Kelley Foster Reg Charter School', 'Excel High School', 'Saint John Paul II High School', 'Salem Academy Charter School', 'Drury High School', 'West Boylston Middle/High School', 'Lenox Memorial Middle & High School', 'Hampden Charter Sch of Science East', 'Hull High School', 'Ware Jr/Sr High School', 'Atlantis Charter School', 'Parker Charter Essential School', 'Rockport High School', 'Renaissance School', 'Lee Middle/High School', 'Palmer High School', 'Neighborhood House Charter School', 'Brighton High School', 'Prospect Hill Academy Charter School', 'Granby Jr./Sr. High School', 'Saint Joseph Preparatory High School', 'Whitinsville Christian School', 'Burke High School', 'Hoosac Valley Middle/High School', 'Avon Mid/High School', 'Pioneer Charter School of Science II', 'University Park Campus', 'John J. Duggan Academy', 'Sizer School', 'Mount Everett Reg. High School', 'Monson High School', 'Boston International High School', 'Pioneer Valley Regional School', 'Pioneer Charter School of Science', 'Hopkins Academy', 'Gateway Reg. High School', 'Community Charter School of Cambridge', 'Pioneer Valley Chinese Immersion Char', 'Mohawk Trail Regional HS/MS', 'Collegiate Charter School of Lowell', 'Academy of Notre Dame ', 'Smith Academy', 'Saint Mary\'s High School (Westfield)', 'North Brookfield Jr./Sr. HS', 'Libertas Academy Charter School']])
+
+leagues.append(League("Massachusetts Charter School Athletic Organization", "MCSAO", "mcsao.jpg"))
+leagues[1].addsport("Boys Basketball", 4, [["Community Charter", "Excel Academy", "Pioneer", "Pioneer II", "Prospect Hill", "Salem Academy"],
+                                           ["Boston Collegiate", "Brooke High School", "Edward M. Kennedy", "Neighborhood House", "Roxbury Prep"],
+                                           ["Academy of the Pacific Rim", "Boston Prep", "Foxborough Regional", "South Shore"],
+                                           ["City on A Hill", "Codman Academy", "MATCH", "New Heights", "Argosy Collegiate", "Collegiate Lowell"]])
+leagues[1].addsport("Girls Basketball", 4, [["Community Charter", "Excel Academy", "Pioneer", "Pioneer II", "Prospect Hill", "Salem Academy"],
+                                           ["Boston Collegiate", "Brooke High School", "Edward M. Kennedy", "Neighborhood House", "Roxbury Prep"],
+                                           ["Academy of the Pacific Rim", "Boston Prep", "Foxborough Regional", "South Shore"],
+                                           ["Codman Academy", "MATCH", "New Heights", "Argosy Collegiate", "Collegiate Lowell"]])
+leagues[1].addsport("Boys Soccer", 4, [["Excel", "Pioneer", "CCSC", "Prospect Hill", "Salem Academy"],
+                                        ["Boston Collegiate", "Brooke High School", "Neighborhood House", "Roxbury Prep"],
+                                        ["Academy of the Pacific Rim", "Boston Prep", "Foxborough Regional", "South Shore"],
+                                        ["City on A Hill", "Codman Academy", "Phoenix", "New Heights", "Argosy Collegiate", "Collegiate Lowell", "Libertas Academy"]])
+leagues[1].addsport("Girls Soccer", 4, [["Excel", "Pioneer", "Prospect Hill", "Salem Academy"],
+                                        ["Boston Collegiate", "Brooke High School", "Neighborhood House", "Roxbury Prep"],
+                                        ["Academy of the Pacific Rim", "Boston Prep", "Foxborough Regional", "South Shore"],
+                                        ["Codman Academy", "Phoenix", "New Heights", "Argosy Collegiate", "Collegiate Lowell", "Libertas Academy"]])
 for league in range(0, len(leagues)):
     for sport in range(0, len(leagues[league].sports)):
         for div in range(0, len(leagues[league].sports[sport][2])):
             leagues[league].sports[sport][2][div] = sorted(leagues[league].sports[sport][2][div])
-
+            for team in leagues[league].sports[sport][2][div]:
+                if teams.count(team) == 0:
+                    teams.append(team)
+teams = sorted(teams)
 
 
 views = Blueprint("views", __name__)
@@ -110,6 +132,14 @@ def basketballstatssheets():
             chosen_league = request.form.get("league")
             chosen_gender = request.form.get("gender")
             chosen_div = request.form.get("division")
+            if chosen_div == "North":
+                chosen_div = 1
+            elif chosen_div == "Central":
+                chosen_div = 2
+            elif chosen_div == "South":
+                chosen_div = 3
+            elif chosen_div == "Independent":
+                chosen_div = 4
             if not chosen_league:
                 flash("Please enter a valid league", category="error")
             elif not chosen_gender:
@@ -169,7 +199,7 @@ def basketballstatssheets():
             players[player]["3P%"] = str(round((players[player]["3P"])/(players[player]["3PA"])*100, 2)) + "%"
         if players[player]["FTA"] > 0:
             players[player]["FT%"] = str(round((players[player]["FT"])/(players[player]["FTA"])*100, 2)) + "%"
-    return render_template("basketballstatssheets.html", leagues=leagues, players=players, len=len(players), continue_data=continue_data)
+    return render_template("basketballstatssheets.html", leagues=leagues, players=players, len=len(players), continue_data=continue_data, teams=teams)
 
 
 @views.route("/soccerstatssheets", methods=["GET", "POST"])
@@ -199,6 +229,14 @@ def soccerstatssheets():
             chosen_league = request.form.get("league")
             chosen_gender = request.form.get("gender")
             chosen_div = request.form.get("division")
+            if chosen_div == "North":
+                chosen_div = 1
+            elif chosen_div == "Central":
+                chosen_div = 2
+            elif chosen_div == "South":
+                chosen_div = 3
+            elif chosen_div == "Independent":
+                chosen_div = 4
             if not chosen_league:
                 flash("Please enter a valid league", category="error")
             elif not chosen_gender:
@@ -248,7 +286,7 @@ def soccerstatssheets():
                 flash('Your Stats Sheet has been saved!', category='success')
     if len(players) < 1:
         continue_data = None
-    return render_template("soccerstatssheets.html", leagues=leagues, players=players, len=len(players), continue_data=continue_data)
+    return render_template("soccerstatssheets.html", leagues=leagues, players=players, len=len(players), continue_data=continue_data, teams=teams)
 
 
 @views.route("/leagues", methods=["GET", "POST"])

@@ -9,7 +9,7 @@ DB_NAME = "database.db"
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = "vdykjbdhsnjskw"
-    app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://statsforschoolssql_plav_user:7HIgxnBji27G75v4CRVQmtJpUCSl7kPK@dpg-cjn7vcdhe99c739mbb80-a.ohio-postgres.render.com/statsforschoolssql_plav"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://statsforschoolssql_fwll_user:de2W3Abr6UgQGhFGBWkRZzhiJ3wZDIxr@dpg-cjujmmt175es739v20p0-a.ohio-postgres.render.com/statsforschoolssql_fwll"
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(app)
