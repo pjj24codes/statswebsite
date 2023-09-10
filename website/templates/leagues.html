@@ -18,9 +18,9 @@
 </head>
 <body>
 <div class="site-wrapper">
-{%for league in leagues %}
     <br />
     <h2 style="color:white"> Leagues: </h2>
+{%for league in leagues %}
     <div class="row">
     <div class="col-sm-2"><img src="{{url_for('static', filename=league.logo )}}" width="200" height="200"></div>
         <div class="col-sm-10">
