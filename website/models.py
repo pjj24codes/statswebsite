@@ -51,6 +51,6 @@ class SoccerPlayerStats(db.Model):
     saves = db.Column(db.Integer)
     shots_taken = db.Column(db.Integer)
     goals = db.Column(db.Integer)
-    yellow_cards = db.Column(db.Integer)
-    red_cards = db.Column(db.Integer)
+    tackles = db.Column(db.Integer)
+    interceptions = db.Column(db.Integer)
     game_id = db.Column(db.Integer, db.ForeignKey("game.id"))
